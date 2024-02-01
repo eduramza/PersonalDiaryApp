@@ -28,10 +28,7 @@ class AuthenticationViewModel : ViewModel() {
             try {
                 val result = withContext(Dispatchers.IO){
                     App.create(MONGO_SERVICE_APP_ID).login(
-                        Credentials.google(
-                            token = tokenId,
-                            type = GoogleAuthType.ID_TOKEN
-                        )
+                        Credentials.jwt(tokenId)
                     ).loggedIn
                 }
                 withContext(Dispatchers.Main){
